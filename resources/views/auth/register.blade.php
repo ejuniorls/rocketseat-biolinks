@@ -16,6 +16,17 @@
             @enderror
         </div>
 
+        <br>
+
+        <div>
+            <input type="text" name="lastname" id="lastname" placeholder="Lastname" value="{{ old('lastname') }}" autocomplete="lastname">
+            @error('lastname')
+            <span>{{ $message }}</span>
+            @enderror
+        </div>
+
+        <br>
+
         <div>
             <input type="text" name="email" id="email" placeholder="E-mail" value="{{ old('email') }}" autocomplete="email">
             @error('email')
@@ -23,9 +34,13 @@
             @enderror
         </div>
 
+        <br>
+
         <div>
             <input type="text" name="email_confirmation" id="email_confirmation" placeholder="E-mail Confirmation" autocomplete="email">
         </div>
+
+        <br>
 
         <div>
             <input type="password" name="password" id="password" placeholder="Senha"
@@ -34,6 +49,8 @@
             <span>{{ $message }}</span>
             @enderror
         </div>
+
+        <br>
 
         <button type="submit">Registrar</button>
     </form>

@@ -36,14 +36,16 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function tryTORegister()
+    public function tryToRegister()
     {
-        // 1. criar um usuário
-        $user = new User();
-        $user->name = $this->name;
-        $user->email = $this->email;
-        $user->password = Hash::make($this->password);
-        $user->save();
+//        // 1. criar um usuário
+//        $user = new User();
+//        $user->name = $this->name;
+//        $user->email = $this->email;
+//        $user->password = Hash::make($this->password);
+//        $user->save();
+
+        $user = User::query()->create($this->validated());
 
         // 2. logar com esse usuário
         auth()->login($user);
