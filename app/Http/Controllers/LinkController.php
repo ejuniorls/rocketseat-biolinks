@@ -28,9 +28,9 @@ class LinkController extends Controller
      */
     public function store(StoreLinkRequest $request)
     {
-        Link::query()->create([
-            $request->validate()
-        ]);
+        Link::query()->create(
+            $request->validated()
+        );
 
         return to_route('dashboard');
     }

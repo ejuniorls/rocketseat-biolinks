@@ -23,10 +23,12 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', LogoutController::class)->name('logout');
-    Route::get('/dashboard', fn() => 'dashboard :: ' . auth()->id())->name('dashboard');
-    Route::get('/links/create', [LinkController::class, 'create'])->name('links.create');
-    Route::post('/links/create', [LinkController::class, 'store']);
 
+    Route::get('/dashboard', fn() => 'dashboard :: ' . auth()->id())->name('dashboard');
+
+    Route::get('/links/create', [LinkController::class, 'create'])->name('links.create');
+
+    Route::post('/links/create', [LinkController::class, 'store']);
 });
 
 
