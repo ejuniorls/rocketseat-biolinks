@@ -17,7 +17,8 @@ class LinkFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'link' => $this->faker->url(),
+            'name' => $this->faker->word(),
         ];
     }
 }
