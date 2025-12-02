@@ -9,6 +9,12 @@
         @foreach($links as $link)
             <li>
                 <a href="{{ route('links.edit', $link) }}">{{ $link->name }}</a>
+                <form action="{{ route('links.destroy', $link) }}" method="post" onsubmit="return confirm('are you sure?')">
+                    @csrf
+                    @method('DELETE')
+
+                    <button>Delete</button>
+                </form>
             </li>
         @endforeach
     </ul>
