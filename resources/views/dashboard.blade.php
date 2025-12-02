@@ -5,6 +5,8 @@
         <div>{{ $message }}</div>
     @endif
 
+    <a href="{{ route('links.create') }}">Create a Link</a>
+
     <ul>
         @foreach($links as $link)
             <li>
@@ -18,7 +20,4 @@
             </li>
         @endforeach
     </ul>
-
-    <a href="{{ route('links.create') }}">Create a Link</a>
-
 </div>
