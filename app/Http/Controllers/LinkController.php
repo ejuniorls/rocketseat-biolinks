@@ -55,9 +55,13 @@ class LinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Link $link)
+    public function edit($id)
     {
-        //
+        $link = Link::query()->findOrFail($id);
+
+        dd(
+            $link->toArray()
+        );
     }
 
     /**
