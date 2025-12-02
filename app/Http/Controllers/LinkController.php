@@ -41,7 +41,7 @@ class LinkController extends Controller
         //     )
         // );
 
-        return to_route('dashboard');
+        return to_route('dashboard')->with('message', 'Link created successfully');
     }
 
     /**
@@ -55,13 +55,9 @@ class LinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Link $link)
     {
-        $link = Link::query()->findOrFail($id);
-
-        dd(
-            $link->toArray()
-        );
+        return view('links.edit', compact('link'));
     }
 
     /**
@@ -69,7 +65,14 @@ class LinkController extends Controller
      */
     public function update(UpdateLinkRequest $request, Link $link)
     {
-        //
+        // $link->link = $request->link;
+        // $link->name = $request->name;
+        // $link->save();
+
+        $link->fill($request->validated())
+            ->save();
+
+        return to_route('dashboard')->with('message', 'Link updated successfully');
     }
 
     /**

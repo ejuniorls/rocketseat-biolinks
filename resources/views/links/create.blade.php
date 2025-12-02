@@ -1,6 +1,4 @@
 <div>
-    {{ auth()->id() }}
-
     <h1>Create a link</h1>
 
     @if($mensagem = session()->get('mensagem'))
