@@ -58,6 +58,10 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
+        if ($link->user->id != auth()->id()) {
+            return to_route('dashboard')->with('message', 'Can\'t updated this link');
+        }
+
         return view('links.edit', compact('link'));
     }
 
