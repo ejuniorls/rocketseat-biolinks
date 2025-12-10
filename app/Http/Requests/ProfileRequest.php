@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProfileRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class ProfileRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'max:50'],
             'description' => ['nullable', 'min:3', 'max:255'],
-            'handler' => ['nullable', 'unique:users'],
+            'handler' => ['required'],
+            Rule::unique('users')->ignore($this->user()->id),
         ];
     }
 }
