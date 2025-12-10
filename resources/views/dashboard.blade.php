@@ -3,6 +3,8 @@
 
     <h2>User {{ auth()->user()->name }} :: {{ auth()->id() }}</h2>
 
+    <a href="{{ route('profile') }}">Update Profile</a>
+
     @if($message = session()->get('message'))
         <div>{{ $message }}</div>
     @endif
