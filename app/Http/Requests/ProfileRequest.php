@@ -25,8 +25,10 @@ class ProfileRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'max:50'],
             'description' => ['nullable', 'min:3', 'max:255'],
-            'handler' => ['required'],
-            Rule::unique('users')->ignore($this->user()->id),
+            'handler' => [
+                'required',
+                Rule::unique('users')->ignore($this->user()->id),
+            ]
         ];
     }
 }
