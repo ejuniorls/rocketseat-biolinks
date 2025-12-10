@@ -25,5 +25,28 @@ class CheckHandler implements ValidationRule
         if (str_contains($value, ' ')) {
             $fail('Cannot contain spaces');
         }
+
+        // Additional validations you might want:
+        //
+        // if (strlen($value) < 4) {
+        //     $fail('Must be at least 4 characters long (including @)');
+        // }
+        //
+        // if (strlen($value) > 30) {
+        //     $fail('Cannot exceed 30 characters');
+        // }
+
+        // Check for reserved usernames
+        $reserved = ['admin', 'root', 'system', 'support', 'moderator'];
+        $username = substr($value, 1); // Remove @
+        if (in_array(strtolower($username), $reserved)) {
+            $fail('This username is reserved');
+        }
+        //
+        // // Check for minimum alphanumeric characters
+        // $username = substr($value, 1);
+        // if (preg_match_all('/[a-zA-Z0-9]/', $username) < 2) {
+        //     $fail('Must contain at least 2 letters or numbers');
+        // }
     }
 }
