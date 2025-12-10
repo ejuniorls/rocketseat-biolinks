@@ -14,12 +14,16 @@ class CheckHandler implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        if (!preg_match('/^@[a-zA-Z0-9_\-]+$/', $value)) {
+            $fail('Must start with @ and can only contain letters, numbers, underscores (_), and hyphens (-). No spaces allowed.');
+        }
+
         if (!str_starts_with($value, '@')) {
-            $fail('Precisa começar com @');
+            $fail('Must start with @');
         }
 
         if (str_contains($value, ' ')) {
-            $fail('Não pode conter espaços');
+            $fail('Cannot contain spaces');
         }
     }
 }
