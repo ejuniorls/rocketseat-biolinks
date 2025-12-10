@@ -2,8 +2,8 @@
 
     <h1>Profile</h1>
 
-    @if($mensagem = session()->get('mensagem'))
-        <div>{{ $mensagem }}</div>
+    @if($message = session()->get('message'))
+        <div>{{ $message }}</div>
     @endif
 
     <form action="{{ route('profile') }}" method="post">
