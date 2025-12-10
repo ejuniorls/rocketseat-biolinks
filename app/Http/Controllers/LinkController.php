@@ -58,9 +58,12 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        if ($link->user->id != auth()->id()) {
-            return to_route('dashboard')->with('message', 'Can\'t updated this link');
-        }
+        // $this->authorize('atualizar', $link);
+
+        /** @var User $user */
+        $user = auth()->user();
+
+        dump($user->can('atualizar', $link));
 
         return view('links.edit', compact('link'));
     }
@@ -70,12 +73,7 @@ class LinkController extends Controller
      */
     public function update(UpdateLinkRequest $request, Link $link)
     {
-        // $link->link = $request->link;
-        // $link->name = $request->name;
-        // $link->save();
-
-        $link->fill($request->validated())
-            ->save();
+        $link->fill($request->validated())->save();
 
         return to_route('dashboard')->with('message', 'Link updated successfully');
     }

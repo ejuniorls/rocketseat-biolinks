@@ -63,4 +63,9 @@ class LinkPolicy
     {
         return false;
     }
+
+    public function atualizar(User $user, Link $link)
+    {
+        return $link->user->is($user) ? Response::allow() : Response::deny('You are not authorized to access this page');
+    }
 }
