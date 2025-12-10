@@ -12,6 +12,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('guest')->group(function () {
+
     Route::get('/login', [LoginController::class, 'index'])->name('login');
 
     Route::post('/login', [LoginController::class, 'login']);
@@ -19,10 +20,12 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
     Route::post('/register', [RegisterController::class, 'register']);
+
 });
 
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/logout', LogoutController::class)->name('logout');
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
@@ -31,15 +34,21 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/links/create', [LinkController::class, 'store']);
 
-    Route::get('/links/{link}/edit', [LinkController::class, 'edit'])->name('links.edit');
 
-    Route::put('/links/{link}/edit', [LinkController::class, 'update']);
+    Route::middleware('can:atualizar,link')->group(function () {
 
-    Route::delete('/links/{link}', [LinkController::class, 'destroy'])->name('links.destroy');
+        Route::get('/links/{link}/edit', [LinkController::class, 'edit'])->name('links.edit');
 
-    Route::patch('/links/{link}/up', [LinkController::class, 'up'])->name('links.up');
+        Route::put('/links/{link}/edit', [LinkController::class, 'update']);
 
-    Route::patch('/links/{link}/down', [LinkController::class, 'down'])->name('links.down');
+        Route::delete('/links/{link}', [LinkController::class, 'destroy'])->name('links.destroy');
+
+        Route::patch('/links/{link}/up', [LinkController::class, 'up'])->name('links.up');
+
+        Route::patch('/links/{link}/down', [LinkController::class, 'down'])->name('links.down');
+
+    });
+
 });
 
 

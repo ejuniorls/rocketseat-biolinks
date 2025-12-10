@@ -66,6 +66,8 @@ class LinkPolicy
 
     public function atualizar(User $user, Link $link)
     {
-        return $link->user->is($user) ? Response::allow() : Response::deny('You are not authorized to access this page');
+        return $link->user->is($user)
+            ? Response::allow()
+            : Response::deny('You are not authorized to access this page');
     }
 }
