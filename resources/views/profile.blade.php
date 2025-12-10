@@ -52,6 +52,8 @@
 
         <a href="{{ route('dashboard') }}">Cancel</a>
 
+        <br>
+
         <button>Update</button>
     </form>
 </div>
