@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 
 class BiolinkController extends Controller
 {
-    public function __invoke($handler)
+    public function __invoke(User $user)
     {
-        $user = User::whereHandler($handler)->firstOrFail();
-
         return view('biolinks', compact('user'));
     }
 }

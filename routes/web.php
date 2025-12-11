@@ -57,4 +57,4 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/{handler?}', BIolinkController::class)->name('handler');
+Route::get('/{user:handler}', BIolinkController::class)->name('handler');
