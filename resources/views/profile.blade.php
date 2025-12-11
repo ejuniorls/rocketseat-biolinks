@@ -6,19 +6,17 @@
         <div>{{ $message }}</div>
     @endif
 
-    <form action="{{ route('profile') }}" method="post">
+    <form action="{{ route('profile') }}" method="post" enctype="multipart/form-data">
 
         @csrf
         @method('PUT')
 
-{{--        <div>--}}
-{{--            <input type="text" name="photo" id="photo" placeholder="Photo" value="{{ old('photo') }}">--}}
-{{--            @error('photo')--}}
-{{--            <span>{{ $message }}</span>--}}
-{{--            @enderror--}}
-{{--        </div>--}}
+        <div>
+            <img src="{{ asset("storage/{$user->photo}") }}" alt="Profile Picture">
+            <input type="file" name="photo" id="photo">
+        </div>
 
-{{--        <br>--}}
+        <br>
 
         <div>
             <input type="text" name="name" id="name" placeholder="Name" value="{{ old('name', $user->name) }}">
