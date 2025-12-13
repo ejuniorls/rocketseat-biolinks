@@ -5,7 +5,7 @@
 
     <a href="{{ route('profile') }}">Update Profile</a>
 
-    <br>
+    <br
 
     @if($message = session()->get('message'))
         <div>{{ $message }}</div>
