@@ -1,6 +1,8 @@
 <div>
     <h1>Dashboard</h1>
 
+    <br>
+
     <h2>User {{ auth()->user()->name }} :: {{ auth()->id() }}</h2>
 
     <a href="{{ route('profile') }}">Update Profile</a>
