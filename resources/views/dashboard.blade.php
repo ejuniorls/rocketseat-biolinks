@@ -1,14 +1,9 @@
 <x-layout.app>
-
-
-
     <x-container>
-
         <div class="absolute top-10 left-10 flex flex-col gap-4">
             <x-button info :href="route('profile')">Update profile</x-button>
             <x-button outline :href="route('links.create')">Create a new link</x-button>
             <x-button error :href="route('logout')">Sair</x-button>
-
         </div>
 
         <div class="text-center space-y-2 text-base-200">
@@ -48,18 +43,13 @@
                             <x-button ghost>
                                 <x-icons.trash class="w-6 h-6"/>
                             </x-button>
-
                         </x-form>
-
-
                     </li>
                 @endforeach
             </ul>
         </div>
     </x-container>
 </x-layout.app>
-
-
 
 
 {{--
