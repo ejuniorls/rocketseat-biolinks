@@ -1,33 +1,18 @@
-<div>
-    <h1>Edit a link :: {{$link->name }}</h1>
+<x-layout.app>
 
-    @if($mensagem = session()->get('mensagem'))
-        <div>{{ $mensagem }}</div>
-    @endif
+    <x-layout.app>
+        <x-container>
+            <x-card title="Creating a link">
+                <x-form :route="route('links.create')" post id="create-form-link">
+                    <x-input name="link" id="link" value="{{ old('link') }}" placeholder="Link" />
+                    <x-input  name="name" id="name"  placeholder="Nome para o Link" value="{{ old('name')}}" />
+                </x-form>
+                <x-slot:actions>
+                    <x-a :href="route('dashboard')">Back to Dashboard</x-a>
+                    <x-button type="submit" form="create-form-link">Save</x-button>
+                </x-slot:actions>
+            </x-card>
+        </x-container>
+    </x-layout.app>
 
-    <form action="{{ route('links.edit', $link) }}" method="post" autocomplete="on">
-
-        @csrf
-        @method('put')
-
-        <div>
-            <input type="text" name="link" id="link" placeholder="Link" value="{{ old('link', $link->link) }}" autocomplete="link">
-            @error('email')
-            <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <br>
-
-        <div>
-            <input type="text" name="name" id="name" placeholder="Name" value="{{ old('name', $link->name) }}" autocomplete="name">
-            @error('name')
-            <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <br>
-
-        <button type="submit">Save</button>
-    </form>
-</div>
+</x-layout.app>

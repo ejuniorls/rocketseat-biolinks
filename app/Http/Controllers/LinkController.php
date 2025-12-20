@@ -5,17 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
 use App\Models\Link;
-use App\Models\User;
-use http\Env\Request;
+
 
 class LinkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -31,36 +24,29 @@ class LinkController extends Controller
     public function store(StoreLinkRequest $request)
     {
         /** @var User $user */
-        $user = auth()->user();
 
+        $user = auth()->user();
         $user->links()->create($request->validated());
 
         // Link::query()->create(
-        //     array_merge(
-        //         $request->validated(),
-        //         ['user_id' => auth()->id()]
-        //     )
+        //     array_merge($request->validated(),['user_id' => auth()->id()])
         // );
 
-        return to_route('dashboard')->with('message', 'Link created successfully');
+        return to_route('dashboard');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Link $link)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Link $link)
     {
-        // $this->authorize('atualizar', $link);
+        //    $link = Link::query()->findOrFail($id);
+
 
         return view('links.edit', compact('link'));
+
+
     }
 
     /**
@@ -68,9 +54,12 @@ class LinkController extends Controller
      */
     public function update(UpdateLinkRequest $request, Link $link)
     {
-        $link->fill($request->validated())->save();
 
-        return to_route('dashboard')->with('message', 'Link updated successfully');
+
+        $link->fill($request->validated());
+        $link->save();
+
+        return to_route('dashboard')->with('message', 'Link alterado com sucesso');
     }
 
     /**
@@ -78,22 +67,33 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
+
+
         $link->delete();
 
-        return to_route('dashboard')->with('message', 'Link deleted successfully');
+        return to_route('dashboard')
+            ->with('message', 'Deletado com sucesso');
     }
 
     public function up(Link $link)
     {
+
+
         $link->moveUp();
 
-        return to_route('dashboard')->with('message', 'Link updated successfully');
+
+        return back();
+
     }
 
     public function down(Link $link)
     {
+
         $link->moveDown();
 
-        return to_route('dashboard')->with('message', 'Link updated successfully');
+
+        return back();
+
     }
+
 }

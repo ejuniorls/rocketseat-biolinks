@@ -1,52 +1,17 @@
-<div>
-    {{ auth()->id() }}
-
-    <h1>Register</h1>
-
-    @if($mensagem = session()->get('mensagem'))
-        <div>{{ $mensagem }}</div>
-    @endif
-
-    <form action="{{ route('register') }}" method="post" autocomplete="on">
-
-        @csrf
-
-        <div>
-            <input type="text" name="name" id="name" placeholder="Name" value="{{ old('name') }}" autocomplete="name">
-            @error('name')
-            <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <br>
-
-        <div>
-            <input type="text" name="email" id="email" placeholder="E-mail" value="{{ old('email') }}"
-                   autocomplete="email">
-            @error('email')
-            <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <br>
-
-        <div>
-            <input type="text" name="email_confirmation" id="email_confirmation" placeholder="E-mail Confirmation"
-                   autocomplete="email">
-        </div>
-
-        <br>
-
-        <div>
-            <input type="password" name="password" id="password" placeholder="Senha"
-                   autocomplete="new-password">
-            @error('password')
-            <span>{{ $message }}</span>
-            @enderror
-        </div>
-
-        <br>
-
-        <button type="submit">Registrar</button>
-    </form>
-</div>
+<x-layout.app>
+    <x-container>
+        <x-card title="Register">
+            <x-form :route="route('register')"
+                    post id="register-form" >
+                <x-input name="name" id="name" value="{{ old('name')}}" placeholder="Nome Completo"  />
+                <x-input name="email" id="email" value="{{ old('email')}}" placeholder="E-mail"  />
+                <x-input name="email_confirmation" id="email_confirmation"  placeholder="E-mail de Confirmação" />
+                <x-input type="password" name="password" id="password" placeholder="Senha" />
+            </x-form>
+            <x-slot:actions>
+                <x-a :href="route('login')">Already have an account?</x-a>
+                <x-button type="submit" form="register-form">Register</x-button>
+            </x-slot:actions>
+        </x-card>
+    </x-container>
+</x-layout.app>
