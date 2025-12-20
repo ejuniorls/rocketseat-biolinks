@@ -9,7 +9,6 @@ use App\Models\Link;
 
 class LinkController extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      */
@@ -43,10 +42,7 @@ class LinkController extends Controller
     {
         //    $link = Link::query()->findOrFail($id);
 
-
         return view('links.edit', compact('link'));
-
-
     }
 
     /**
@@ -54,8 +50,6 @@ class LinkController extends Controller
      */
     public function update(UpdateLinkRequest $request, Link $link)
     {
-
-
         $link->fill($request->validated());
         $link->save();
 
@@ -67,8 +61,6 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-
-
         $link->delete();
 
         return to_route('dashboard')
@@ -77,23 +69,16 @@ class LinkController extends Controller
 
     public function up(Link $link)
     {
-
-
         $link->moveUp();
 
-
         return back();
-
     }
 
     public function down(Link $link)
     {
-
         $link->moveDown();
 
-
         return back();
-
     }
 
 }
